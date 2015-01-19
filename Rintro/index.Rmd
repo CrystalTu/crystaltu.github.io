@@ -1,7 +1,7 @@
 ---
 title       : R 語言入門
 subtitle    : 
-author      : Crystal Tu
+author      : Crystal Tu (tu.chenyi@gmail.com)
 job         : 
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
@@ -23,6 +23,13 @@ fit100 <- function(fname) sprintf('<img src="assets/img/%s" class="fit100" />', 
 fit50 <- function(fname) sprintf('<img src="assets/img/%s" class="fit50" />', fname)
 fig <- function(fname, size) sprintf('<img src="assets/img/%s" style="max-width:%d%%;max-height:%d%%;" />', fname, size, size)
 ```
+
+### Useful link
+
+- Today's slide http://crystaltu.github.io/Rintro/index.html
+- Morzilla Firefox https://mozilla.com.tw/
+- DSP data center http://ckan.nispc.tw/organization/dsp-data-camp-at-nccu
+- LibreOffice https://zh-tw.libreoffice.org/
 
 --- &twocol
 
@@ -428,6 +435,15 @@ taipei_rent <- read.table('TaipeiRealPriceRent_utf8.csv', header = TRUE, sep = "
 sample(taipei_rent[1:5,1:10])
 ```
 
+--- .largecontent
+
+## What if...
+資料讀不進來，怎麼辦？
+
+- 路徑正確嗎？ (getwd(), setwd())
+- 編碼有問題？ (big5, utf-8)  找`LibreOffice`
+- Save As -> Edit filter setting...
+
 ---
 ## Basic description
 
@@ -505,20 +521,20 @@ names(tab1)
 
 ---
 
+## Pivot table
+
+```{r echo=TRUE,eval=TRUE}
+library(dplyr)
+summarise(group_by(tab1,建物型態),平均=mean(總價.元.))
+```
+
+---
+
 ## Export data
 
 ```{r,echo=TRUE}
 ?write.csv
 write.csv(tab1,file="tab1.csv")
-```
-
----
-
-## Formula & Pivot table
-- y ~ x
-```{r echo=TRUE,eval=TRUE}
-library(dplyr)
-summarise(group_by(tab1,建物型態),平均=mean(總價.元.))
 ```
 
 ---
@@ -759,7 +775,9 @@ example(pch)
 
 - Basic R command: getwd(), setwd(), help(), example()
 - Data type: mode(), class(), factor(), names()
+- Object: formula()
 - dplyr: filter(), select(), summarise()
+- EDA: mean(), sd(), ftable()
 - Visualization: plot(), barplot(), piechart()
 
 --- .segue .dark
@@ -768,7 +786,7 @@ example(pch)
 
 --- .segue .dark
 
-## YOUR TURN
+## YOUR TURN AGAIN!
 
 --- 
 

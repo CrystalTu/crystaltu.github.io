@@ -1,7 +1,7 @@
 ---
 title       : R 語言入門
 subtitle    : 
-author      : Crystal Tu
+author      : Crystal Tu (tu.chenyi@gmail.com)
 job         : 
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
@@ -12,6 +12,13 @@ knit        : slidify::knit2slides
 ---
 
 
+
+### Useful link
+
+- Today's slide http://crystaltu.github.io/Rintro/index.html
+- Morzilla Firefox https://mozilla.com.tw/
+- DSP data center http://ckan.nispc.tw/organization/dsp-data-camp-at-nccu
+- LibreOffice https://zh-tw.libreoffice.org/
 
 --- &twocol
 
@@ -649,25 +656,34 @@ names(taipei_rent)
 
 
 ```
-##               交易標的 交易類別 非都市土地使用分區
-## 1 房地(土地+建物)+車位     租賃               <NA>
-## 2      房地(土地+建物)     租賃               <NA>
-## 3      房地(土地+建物)     租賃               <NA>
-## 4      房地(土地+建物)     租賃               <NA>
-## 5      房地(土地+建物)     租賃               <NA>
-##   土地移轉總面積.平方公尺. 鄉鎮市區 月份 使用分區或編定 年份
-## 1                  4065.00   內湖區    8             住  101
-## 2                    12.65   大安區    8             商  101
-## 3                     7.09   大安區    8             住  101
-## 4                     4.43   大安區    8           其他  101
-## 5                    23.27   大安區    8             住  101
-##             土地區段位置.建物區段門牌   縣市
-## 1 臺北市內湖區內湖路二段253巷51~100號 臺北市
-## 2      臺北市大安區和平東路一段1~50號 臺北市
-## 3      臺北市大安區安和路二段51~100號 臺北市
-## 4    臺北市大安區和平東路三段51~100號 臺北市
-## 5 臺北市大安區建國南路二段294巷1~50號 臺北市
+##   月份           土地區段位置.建物區段門牌 土地移轉總面積.平方公尺.
+## 1    8 臺北市內湖區內湖路二段253巷51~100號                  4065.00
+## 2    8      臺北市大安區和平東路一段1~50號                    12.65
+## 3    8      臺北市大安區安和路二段51~100號                     7.09
+## 4    8    臺北市大安區和平東路三段51~100號                     4.43
+## 5    8 臺北市大安區建國南路二段294巷1~50號                    23.27
+##               交易標的 交易類別   縣市 年份 鄉鎮市區 非都市土地使用分區
+## 1 房地(土地+建物)+車位     租賃 臺北市  101   內湖區               <NA>
+## 2      房地(土地+建物)     租賃 臺北市  101   大安區               <NA>
+## 3      房地(土地+建物)     租賃 臺北市  101   大安區               <NA>
+## 4      房地(土地+建物)     租賃 臺北市  101   大安區               <NA>
+## 5      房地(土地+建物)     租賃 臺北市  101   大安區               <NA>
+##   使用分區或編定
+## 1             住
+## 2             商
+## 3             住
+## 4           其他
+## 5             住
 ```
+
+--- .largecontent
+
+## What if...
+資料讀不進來，怎麼辦？
+
+- 路徑正確嗎？ (getwd(), setwd())
+- 編碼有問題？ (big5, utf-8)  找`LibreOffice`
+- Save As -> Edit filter setting...
 
 ---
 ## Basic description
@@ -826,7 +842,7 @@ taipei_rent$建物型態 <- type
 taipei_rent <- read.table('TaipeiRealPriceRent_utf8.csv',header=TRUE,sep=",")
 
 library(dplyr)
-wenshan <- filter(taipei_rent, 鄉鎮市區 == "文山區" & 主要用途 == "住家用")
+wenshan <- filter(taipei_rent, 鄉鎮市區 == "文山區" & 主要用途 == "住家用")
 head(wenshan)
 ```
 
@@ -896,7 +912,7 @@ head(wenshan)
 
 
 ```r
-tab1 <- select(wenshan,交易標的,建物型態,建物移轉總面積.平方公尺.,總價.元.,contains("建物現況格局"))
+tab1 <- select(wenshan,交易標的,建物型態,建物移轉總面積.平方公尺.,總價.元.,contains("建物現況格局"))U
 names(tab1)
 ```
 
@@ -909,18 +925,8 @@ names(tab1)
 
 ---
 
-## Export data
+## Pivot table
 
-
-```r
-?write.csv
-write.csv(tab1,file="tab1.csv")
-```
-
----
-
-## Formula & Pivot table
-- y ~ x
 
 ```r
 library(dplyr)
@@ -936,6 +942,16 @@ summarise(group_by(tab1,建物型態),平均=mean(總價.元.))
 ## 3            套房(1房1廳1衛) 15733.33
 ## 4     華廈(10層含以下有電梯) 25115.38
 ## 5                     透天厝 27000.00
+```
+
+---
+
+## Export data
+
+
+```r
+?write.csv
+write.csv(tab1,file="tab1.csv")
 ```
 
 ---
@@ -1184,7 +1200,9 @@ example(pch)
 
 - Basic R command: getwd(), setwd(), help(), example()
 - Data type: mode(), class(), factor(), names()
+- Object: formula()
 - dplyr: filter(), select(), summarise()
+- EDA: mean(), sd(), ftable()
 - Visualization: plot(), barplot(), piechart()
 
 --- .segue .dark
@@ -1193,7 +1211,7 @@ example(pch)
 
 --- .segue .dark
 
-## YOUR TURN
+## YOUR TURN AGAIN!
 
 --- 
 

@@ -4,7 +4,7 @@
   <title>R 語言入門</title>
   <meta charset="utf-8">
   <meta name="description" content="R 語言入門">
-  <meta name="author" content="Crystal Tu">
+  <meta name="author" content="Crystal Tu (tu.chenyi@gmail.com)">
   <meta name="generator" content="slidify" />
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
@@ -36,7 +36,7 @@
   <hgroup class="auto-fadein">
     <h1>R 語言入門</h1>
     <h2></h2>
-    <p>Crystal Tu<br/></p>
+    <p>Crystal Tu (tu.chenyi@gmail.com)<br/></p>
   </hgroup>
   <article></article>  
 </slide>
@@ -44,8 +44,17 @@
 
     <!-- SLIDES -->
     <slide class="" id="slide-1" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
+  <hgroup>
+    <h3>Useful link</h3>
+  </hgroup>
   <article data-timings="">
-    
+    <ul>
+<li>Today&#39;s slide <a href="http://crystaltu.github.io/Rintro/index.html">http://crystaltu.github.io/Rintro/index.html</a></li>
+<li>Morzilla Firefox <a href="https://mozilla.com.tw/">https://mozilla.com.tw/</a></li>
+<li>DSP data center <a href="http://ckan.nispc.tw/organization/dsp-data-camp-at-nccu">http://ckan.nispc.tw/organization/dsp-data-camp-at-nccu</a></li>
+<li>LibreOffice <a href="https://zh-tw.libreoffice.org/">https://zh-tw.libreoffice.org/</a></li>
+</ul>
+
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -842,30 +851,46 @@ taipei_rent &lt;- read.table(&#39;TaipeiRealPriceRent_utf8.csv&#39;, header = TR
 <li>請問以下資料，每一個欄位是屬於哪些類別的資料？</li>
 </ul>
 
-<pre><code>##               交易標的 交易類別 非都市土地使用分區
-## 1 房地(土地+建物)+車位     租賃               &lt;NA&gt;
-## 2      房地(土地+建物)     租賃               &lt;NA&gt;
-## 3      房地(土地+建物)     租賃               &lt;NA&gt;
-## 4      房地(土地+建物)     租賃               &lt;NA&gt;
-## 5      房地(土地+建物)     租賃               &lt;NA&gt;
-##   土地移轉總面積.平方公尺. 鄉鎮市區 月份 使用分區或編定 年份
-## 1                  4065.00   內湖區    8             住  101
-## 2                    12.65   大安區    8             商  101
-## 3                     7.09   大安區    8             住  101
-## 4                     4.43   大安區    8           其他  101
-## 5                    23.27   大安區    8             住  101
-##             土地區段位置.建物區段門牌   縣市
-## 1 臺北市內湖區內湖路二段253巷51~100號 臺北市
-## 2      臺北市大安區和平東路一段1~50號 臺北市
-## 3      臺北市大安區安和路二段51~100號 臺北市
-## 4    臺北市大安區和平東路三段51~100號 臺北市
-## 5 臺北市大安區建國南路二段294巷1~50號 臺北市
+<pre><code>##   月份           土地區段位置.建物區段門牌 土地移轉總面積.平方公尺.
+## 1    8 臺北市內湖區內湖路二段253巷51~100號                  4065.00
+## 2    8      臺北市大安區和平東路一段1~50號                    12.65
+## 3    8      臺北市大安區安和路二段51~100號                     7.09
+## 4    8    臺北市大安區和平東路三段51~100號                     4.43
+## 5    8 臺北市大安區建國南路二段294巷1~50號                    23.27
+##               交易標的 交易類別   縣市 年份 鄉鎮市區 非都市土地使用分區
+## 1 房地(土地+建物)+車位     租賃 臺北市  101   內湖區               &lt;NA&gt;
+## 2      房地(土地+建物)     租賃 臺北市  101   大安區               &lt;NA&gt;
+## 3      房地(土地+建物)     租賃 臺北市  101   大安區               &lt;NA&gt;
+## 4      房地(土地+建物)     租賃 臺北市  101   大安區               &lt;NA&gt;
+## 5      房地(土地+建物)     租賃 臺北市  101   大安區               &lt;NA&gt;
+##   使用分區或編定
+## 1             住
+## 2             商
+## 3             住
+## 4           其他
+## 5             住
 </code></pre>
 
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="" id="slide-41" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
+<slide class="largecontent" id="slide-41" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
+  <hgroup>
+    <h2>What if...</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>資料讀不進來，怎麼辦？</p>
+
+<ul>
+<li>路徑正確嗎？ (getwd(), setwd())</li>
+<li>編碼有問題？ (big5, utf-8)  找<code>LibreOffice</code></li>
+<li>Save As -&gt; Edit filter setting...</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-42" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
   <hgroup>
     <h2>Basic description</h2>
   </hgroup>
@@ -958,7 +983,7 @@ taipei_rent &lt;- read.table(&#39;TaipeiRealPriceRent_utf8.csv&#39;, header = TR
   </article>
   <!-- Presenter Notes -->
 </slide>
-<slide class="largecontent" id="slide-42" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
+<slide class="largecontent" id="slide-43" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
   <hgroup>
     <h2>Data selection</h2>
   </hgroup>
@@ -978,7 +1003,7 @@ taipei_rent &lt;- read.table(&#39;TaipeiRealPriceRent_utf8.csv&#39;, header = TR
   </article>
   <!-- Presenter Notes -->
 </slide>
-<slide class="largecontent" id="slide-43" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
+<slide class="largecontent" id="slide-44" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
   <hgroup>
     <h2>Example</h2>
   </hgroup>
@@ -994,7 +1019,7 @@ head(x3)
   </article>
   <!-- Presenter Notes -->
 </slide>
-<slide class="" id="slide-44" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
+<slide class="" id="slide-45" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
   <hgroup>
     <h2>Labeling categorical variable</h2>
   </hgroup>
@@ -1022,7 +1047,7 @@ taipei_rent$建物型態 &lt;- type
   </article>
   <!-- Presenter Notes -->
 </slide>
-<slide class="" id="slide-45" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
+<slide class="" id="slide-46" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
   <hgroup>
     <h2>Data manipulation with package &quot;dplyr&quot;</h2>
   </hgroup>
@@ -1035,7 +1060,7 @@ taipei_rent$建物型態 &lt;- type
 taipei_rent &lt;- read.table(&#39;TaipeiRealPriceRent_utf8.csv&#39;,header=TRUE,sep=&quot;,&quot;)
 
 library(dplyr)
-wenshan &lt;- filter(taipei_rent, 鄉鎮市區 == &quot;文山區&quot; &amp; 主要用途 == &quot;住家用&quot;)
+wenshan &lt;- filter(taipei_rent, 鄉鎮市區 == &quot;文山區&quot; &amp; 主要用途 == &quot;住家用&quot;)
 head(wenshan)
 </code></pre>
 
@@ -1100,7 +1125,7 @@ head(wenshan)
   </article>
   <!-- Presenter Notes -->
 </slide>
-<slide class="" id="slide-46" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
+<slide class="" id="slide-47" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
   <hgroup>
     <h2>Data manipulation with package &quot;dplyr&quot;</h2>
   </hgroup>
@@ -1109,7 +1134,7 @@ head(wenshan)
 <li>select 選擇需要欄位</li>
 </ul>
 
-<pre><code class="r">tab1 &lt;- select(wenshan,交易標的,建物型態,建物移轉總面積.平方公尺.,總價.元.,contains(&quot;建物現況格局&quot;))
+<pre><code class="r">tab1 &lt;- select(wenshan,交易標的,建物型態,建物移轉總面積.平方公尺.,總價.元.,contains(&quot;建物現況格局&quot;))U
 names(tab1)
 </code></pre>
 
@@ -1122,28 +1147,12 @@ names(tab1)
   </article>
   <!-- Presenter Notes -->
 </slide>
-<slide class="" id="slide-47" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
-  <hgroup>
-    <h2>Export data</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">?write.csv
-write.csv(tab1,file=&quot;tab1.csv&quot;)
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
 <slide class="" id="slide-48" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
   <hgroup>
-    <h2>Formula &amp; Pivot table</h2>
+    <h2>Pivot table</h2>
   </hgroup>
   <article data-timings="">
-    <ul>
-<li>y ~ x</li>
-</ul>
-
-<pre><code class="r">library(dplyr)
+    <pre><code class="r">library(dplyr)
 summarise(group_by(tab1,建物型態),平均=mean(總價.元.))
 </code></pre>
 
@@ -1162,6 +1171,18 @@ summarise(group_by(tab1,建物型態),平均=mean(總價.元.))
 </slide>
 <slide class="" id="slide-49" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
   <hgroup>
+    <h2>Export data</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">?write.csv
+write.csv(tab1,file=&quot;tab1.csv&quot;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-50" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
+  <hgroup>
     <h2>Summary</h2>
   </hgroup>
   <article data-timings="">
@@ -1176,7 +1197,7 @@ summarise(group_by(tab1,建物型態),平均=mean(總價.元.))
   </article>
   <!-- Presenter Notes -->
 </slide>
-<slide class="segue dark" id="slide-50" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
+<slide class="segue dark" id="slide-51" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
   <hgroup>
     <h2>Your Turn!</h2>
   </hgroup>
@@ -1185,7 +1206,7 @@ summarise(group_by(tab1,建物型態),平均=mean(總價.元.))
   </article>
   <!-- Presenter Notes -->
 </slide>
-<slide class="" id="slide-51" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
+<slide class="" id="slide-52" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
   <hgroup>
     <h3>Data manipulation and export</h3>
   </hgroup>
@@ -1200,7 +1221,7 @@ summarise(group_by(tab1,建物型態),平均=mean(總價.元.))
   </article>
   <!-- Presenter Notes -->
 </slide>
-<slide class="segue dark" id="slide-52" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
+<slide class="segue dark" id="slide-53" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
   <hgroup>
     <h2>Exploratory data analysis</h2>
   </hgroup>
@@ -1209,7 +1230,7 @@ summarise(group_by(tab1,建物型態),平均=mean(總價.元.))
   </article>
   <!-- Presenter Notes -->
 </slide>
-<slide class="largecontent" id="slide-53" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
+<slide class="largecontent" id="slide-54" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
   <hgroup>
     <h2>Quantitative data</h2>
   </hgroup>
@@ -1222,7 +1243,7 @@ summarise(group_by(tab1,建物型態),平均=mean(總價.元.))
   </article>
   <!-- Presenter Notes -->
 </slide>
-<slide class="largecontent" id="slide-54" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
+<slide class="largecontent" id="slide-55" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
   <hgroup>
     <h2>Qualitative data</h2>
   </hgroup>
@@ -1234,7 +1255,7 @@ summarise(group_by(tab1,建物型態),平均=mean(總價.元.))
   </article>
   <!-- Presenter Notes -->
 </slide>
-<slide class="" id="slide-55" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;" >
+<slide class="" id="slide-56" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;" >
 <hgroup>
   <h2>利用說明文件了解函數內容</h2>
 </hgroup>
@@ -1260,7 +1281,7 @@ summarise(group_by(tab1,建物型態),平均=mean(總價.元.))
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="largecontent" id="slide-56" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;" >
+<slide class="largecontent" id="slide-57" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;" >
 <hgroup>
   <h2>探索單一量化變數</h2>
 </hgroup>
@@ -1270,7 +1291,7 @@ summarise(group_by(tab1,建物型態),平均=mean(總價.元.))
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="largecontent" id="slide-57" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;" >
+<slide class="largecontent" id="slide-58" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;" >
 <hgroup>
   <h2>探索單一量化變數</h2>
 </hgroup>
@@ -1298,7 +1319,7 @@ summarise(group_by(tab1,建物型態),平均=mean(總價.元.))
   </section>
 </aside>
 </slide>
-<slide class="largecontent" id="slide-58" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;" >
+<slide class="largecontent" id="slide-59" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;" >
 <hgroup>
   <h2>探索一個質化變數</h2>
 </hgroup>
@@ -1319,7 +1340,7 @@ summarise(group_by(tab1,建物型態),平均=mean(總價.元.))
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="largecontent" id="slide-59" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;" >
+<slide class="largecontent" id="slide-60" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;" >
 <hgroup>
   <h2>探索變數間的關係</h2>
 </hgroup>
@@ -1333,7 +1354,7 @@ summarise(group_by(tab1,建物型態),平均=mean(總價.元.))
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="largecontent" id="slide-60" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;" >
+<slide class="largecontent" id="slide-61" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;" >
 <hgroup>
   <h2>探索質化變數與質化變數的關係</h2>
 </hgroup>
@@ -1355,7 +1376,7 @@ Class Sex    Age
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="largecontent" id="slide-61" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;" >
+<slide class="largecontent" id="slide-62" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;" >
 <hgroup>
   <h2>描述資料間的關係：<code>formula</code>物件</h2>
 </hgroup>
@@ -1369,7 +1390,7 @@ Class Sex    Age
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="largecontent" id="slide-62" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;" >
+<slide class="largecontent" id="slide-63" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;" >
 <hgroup>
   <h2>描述資料間的關係：<code>formula</code>物件</h2>
 </hgroup>
@@ -1394,7 +1415,7 @@ ftable(Survived ~ Sex + Class, Titanic)
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="largecontent" id="slide-63" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;" >
+<slide class="largecontent" id="slide-64" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;" >
 <hgroup>
   <h2>小挑戰</h2>
 </hgroup>
@@ -1419,7 +1440,7 @@ ftable(Survived ~ Class + Age, Titanic)
   </section>
 </aside>
 </slide>
-<slide class="dark segue" id="slide-64" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
+<slide class="dark segue" id="slide-65" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
   <hgroup>
     <h2>R 的基礎繪圖</h2>
   </hgroup>
@@ -1428,7 +1449,7 @@ ftable(Survived ~ Class + Age, Titanic)
   </article>
   <!-- Presenter Notes -->
 </slide>
-<slide class="largecontent" id="slide-65" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
+<slide class="largecontent" id="slide-66" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
   <hgroup>
     <h2>Barplot</h2>
   </hgroup>
@@ -1442,7 +1463,7 @@ barplot(sort(table(tab1$建物型態), decreasing=TRUE),las=1,horiz=TRUE)
   </article>
   <!-- Presenter Notes -->
 </slide>
-<slide class="largecontent" id="slide-66" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
+<slide class="largecontent" id="slide-67" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
   <hgroup>
     <h2>Pie chart</h2>
   </hgroup>
@@ -1456,7 +1477,7 @@ pie(sort(table(tab1$交易標的), decreasing=TRUE))
   </article>
   <!-- Presenter Notes -->
 </slide>
-<slide class="largecontent" id="slide-67" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
+<slide class="largecontent" id="slide-68" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
   <hgroup>
     <h2>Scatter plot</h2>
   </hgroup>
@@ -1470,7 +1491,7 @@ plot(tab1$建物移轉總面積.平方公尺.,tab1$總價.元.)
   </article>
   <!-- Presenter Notes -->
 </slide>
-<slide class="largecontent" id="slide-68" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;" >
+<slide class="largecontent" id="slide-69" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;" >
 <hgroup>
   <h2>Graphic annotation</h2>
 </hgroup>
@@ -1487,7 +1508,7 @@ plot(tab1$建物移轉總面積.平方公尺.,tab1$總價.元.)
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="largecontent" id="slide-69" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;" >
+<slide class="largecontent" id="slide-70" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;" >
 <hgroup>
   <h2>Learn about the parameter - 以pch為例</h2>
 </hgroup>
@@ -1499,7 +1520,7 @@ example(pch)
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="dark segue" id="slide-70" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
+<slide class="dark segue" id="slide-71" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
   <hgroup>
     <h2>Graphics output</h2>
   </hgroup>
@@ -1508,7 +1529,7 @@ example(pch)
   </article>
   <!-- Presenter Notes -->
 </slide>
-<slide class="largecontent" id="slide-71" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;" >
+<slide class="largecontent" id="slide-72" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;" >
 <hgroup>
   <h2>Save as plot</h2>
 </hgroup>
@@ -1522,7 +1543,7 @@ example(pch)
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="dark segue" id="slide-72" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
+<slide class="dark segue" id="slide-73" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
   <hgroup>
     <h2>Summary</h2>
   </hgroup>
@@ -1531,19 +1552,21 @@ example(pch)
   </article>
   <!-- Presenter Notes -->
 </slide>
-<slide class="largecontent" id="slide-73" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
+<slide class="largecontent" id="slide-74" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
   <article data-timings="">
     <ul>
 <li>Basic R command: getwd(), setwd(), help(), example()</li>
 <li>Data type: mode(), class(), factor(), names()</li>
+<li>Object: formula()</li>
 <li>dplyr: filter(), select(), summarise()</li>
+<li>EDA: mean(), sd(), ftable()</li>
 <li>Visualization: plot(), barplot(), piechart()</li>
 </ul>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
-<slide class="segue dark" id="slide-74" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
+<slide class="segue dark" id="slide-75" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
   <hgroup>
     <h2>Q&amp;A</h2>
   </hgroup>
@@ -1552,16 +1575,16 @@ example(pch)
   </article>
   <!-- Presenter Notes -->
 </slide>
-<slide class="segue dark" id="slide-75" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
+<slide class="segue dark" id="slide-76" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
   <hgroup>
-    <h2>YOUR TURN</h2>
+    <h2>YOUR TURN AGAIN!</h2>
   </hgroup>
   <article data-timings="">
     
   </article>
   <!-- Presenter Notes -->
 </slide>
-<slide class="" id="slide-76" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
+<slide class="" id="slide-77" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
   <hgroup>
     <h2>YouBike Data</h2>
   </hgroup>
@@ -1571,7 +1594,7 @@ example(pch)
   </article>
   <!-- Presenter Notes -->
 </slide>
-<slide class="" id="slide-77" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
+<slide class="" id="slide-78" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
   <article data-timings="">
     <pre><code>##  [1] &quot;日期&quot;         &quot;時間&quot;         &quot;場站代號&quot;     &quot;場站區域&quot;    
 ##  [5] &quot;場站名稱&quot;     &quot;經度&quot;         &quot;緯度&quot;         &quot;總停車格&quot;    
@@ -1617,7 +1640,7 @@ example(pch)
   </article>
   <!-- Presenter Notes -->
 </slide>
-<slide class="" id="slide-78" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
+<slide class="" id="slide-79" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
   <hgroup>
     <h2>Task</h2>
   </hgroup>
@@ -1637,7 +1660,7 @@ example(pch)
     </section>
   </aside>
 </slide>
-<slide class="largecontent" id="slide-79" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
+<slide class="largecontent" id="slide-80" style="background-image: url('assets/img/dsp-page.png'); background-repeat:no-repeat; background-position:center; background-size: 100% 100%;">
   <hgroup>
     <h2>Next</h2>
   </hgroup>
@@ -1655,7 +1678,7 @@ example(pch)
     <ul>
       <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=1 title=''>
+        data-slide=1 title='Useful link'>
          1
       </a>
     </li>
@@ -1895,31 +1918,31 @@ example(pch)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=41 title='Basic description'>
+        data-slide=41 title='What if...'>
          41
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=42 title='Data selection'>
+        data-slide=42 title='Basic description'>
          42
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=43 title='Example'>
+        data-slide=43 title='Data selection'>
          43
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=44 title='Labeling categorical variable'>
+        data-slide=44 title='Example'>
          44
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=45 title='Data manipulation with package &quot;dplyr&quot;'>
+        data-slide=45 title='Labeling categorical variable'>
          45
       </a>
     </li>
@@ -1931,61 +1954,61 @@ example(pch)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=47 title='Export data'>
+        data-slide=47 title='Data manipulation with package &quot;dplyr&quot;'>
          47
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=48 title='Formula &amp; Pivot table'>
+        data-slide=48 title='Pivot table'>
          48
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=49 title='Summary'>
+        data-slide=49 title='Export data'>
          49
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=50 title='Your Turn!'>
+        data-slide=50 title='Summary'>
          50
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=51 title='Data manipulation and export'>
+        data-slide=51 title='Your Turn!'>
          51
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=52 title='Exploratory data analysis'>
+        data-slide=52 title='Data manipulation and export'>
          52
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=53 title='Quantitative data'>
+        data-slide=53 title='Exploratory data analysis'>
          53
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=54 title='Qualitative data'>
+        data-slide=54 title='Quantitative data'>
          54
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=55 title='利用說明文件了解函數內容'>
+        data-slide=55 title='Qualitative data'>
          55
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=56 title='探索單一量化變數'>
+        data-slide=56 title='利用說明文件了解函數內容'>
          56
       </a>
     </li>
@@ -1997,25 +2020,25 @@ example(pch)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=58 title='探索一個質化變數'>
+        data-slide=58 title='探索單一量化變數'>
          58
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=59 title='探索變數間的關係'>
+        data-slide=59 title='探索一個質化變數'>
          59
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=60 title='探索質化變數與質化變數的關係'>
+        data-slide=60 title='探索變數間的關係'>
          60
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=61 title='描述資料間的關係：<code>formula</code>物件'>
+        data-slide=61 title='探索質化變數與質化變數的關係'>
          61
       </a>
     </li>
@@ -2027,104 +2050,110 @@ example(pch)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=63 title='小挑戰'>
+        data-slide=63 title='描述資料間的關係：<code>formula</code>物件'>
          63
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=64 title='R 的基礎繪圖'>
+        data-slide=64 title='小挑戰'>
          64
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=65 title='Barplot'>
+        data-slide=65 title='R 的基礎繪圖'>
          65
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=66 title='Pie chart'>
+        data-slide=66 title='Barplot'>
          66
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=67 title='Scatter plot'>
+        data-slide=67 title='Pie chart'>
          67
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=68 title='Graphic annotation'>
+        data-slide=68 title='Scatter plot'>
          68
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=69 title='Learn about the parameter - 以pch為例'>
+        data-slide=69 title='Graphic annotation'>
          69
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=70 title='Graphics output'>
+        data-slide=70 title='Learn about the parameter - 以pch為例'>
          70
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=71 title='Save as plot'>
+        data-slide=71 title='Graphics output'>
          71
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=72 title='Summary'>
+        data-slide=72 title='Save as plot'>
          72
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=73 title=''>
+        data-slide=73 title='Summary'>
          73
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=74 title='Q&amp;A'>
+        data-slide=74 title=''>
          74
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=75 title='YOUR TURN'>
+        data-slide=75 title='Q&amp;A'>
          75
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=76 title='YouBike Data'>
+        data-slide=76 title='YOUR TURN AGAIN!'>
          76
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=77 title=''>
+        data-slide=77 title='YouBike Data'>
          77
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=78 title='Task'>
+        data-slide=78 title=''>
          78
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=79 title='Next'>
+        data-slide=79 title='Task'>
          79
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=80 title='Next'>
+         80
       </a>
     </li>
   </ul>
