@@ -1,0 +1,804 @@
+---
+title       : R 語言入門
+subtitle    : 
+author      : Crystal Tu
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : [mathjax]            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+```{r setup, include=FALSE, cache=FALSE}
+suppressPackageStartupMessages({
+  library(knitr)
+  library(wordcloud)
+  library(RColorBrewer)
+  library(dplyr)
+})
+opts_chunk$set(echo = FALSE, cache = FALSE)
+fit100 <- function(fname) sprintf('<img src="assets/img/%s" class="fit100" />', fname)
+fit50 <- function(fname) sprintf('<img src="assets/img/%s" class="fit50" />', fname)
+fig <- function(fname, size) sprintf('<img src="assets/img/%s" style="max-width:%d%%;max-height:%d%%;" />', fname, size, size)
+```
+
+--- &twocol
+
+## About Me
+
+*** =left
+
+- 臺灣大學海洋研究所博士班
+- 專長：計量生態學
+- 海洋所 `統計生態學與程式應用`
+- 生命科學系 `生命科學數學`
+- 新聞所 資料新聞學
+
+*** =right
+
+`r fig('crystal.jpg', 80)`
+
+--- .segue .dark
+
+## Scenario
+
+---
+
+`r fig("nccu_appledaily.png",75)`
+
+---
+
+`r fig("nccu_oversupply.png",100)`
+
+--- &vcenter .largecontent
+
+## Question
+
+- 可以租出去的，大都是怎樣的`物件`？
+
+---
+## Data
+
+- DSP資料中心：臺北市實價登錄租賃資料
+- http://ckan.nispc.tw/organization/dsp-data-camp-at-nccu
+
+<center>`r fig('opendata-example.png',100)`</center>
+
+---
+
+```{r echo=FALSE,eval=TRUE}
+test <- read.csv('TaipeiRealPriceRent_utf8.csv', header = TRUE, sep=',')
+head(test)
+```
+
+--- &twocol .segue .dark
+
+### 為什麼大家都用R？
+
+*** =right
+`r fig('a_rising_tide_of_R.jpg',100)`
+Source: Nature
+
+--- v&center
+
+## R來自專業統計學家
+
+- "The R Project for `Statistical Computing`"
+
+<center><img src="assets/img/statician_10521919-655x280.jpg" class="fit100" /></center>
+
+圖片來源： <http://myfootpath.com/careers/engineering-careers/statistician-careers/>
+
+--- v&center
+
+## 驚人的彈性和發展性
+
+<center>`r fig("fig_10_cran1.png", 50)`</center>
+
+取自 <http://r4stats.com/2013/03/19/r-2012-growth-exceeds-sas-all-time-total/>
+
+---
+
+## R 可以輸出高品質的視覺化作品
+
+`r fig("flights_sml.jpg", 100)`
+
+取自<http://www.r-bloggers.com/mapping-the-worlds-biggest-airlines/>
+
+--- &vcenter
+
+## R 很容易和其他工具整合
+
+<center>
+```{r r-integration, warning=FALSE}
+tools <- strsplit("Rcpp,rJava,rpy2,RHadoop,RMySQL,RPostgreSQL,RJDBC,RODBC,ROpenOffice,rredis,rmongodb,RSelenium", ",")[[1]]
+freq <- rep(1, length(tools))
+pal <- brewer.pal(length(tools),"BuGn")
+wordcloud(tools, freq, random.color = TRUE, colors = pal)
+```
+</center>
+
+--- .largecontent
+
+## Learning targets
+
+- Setup R environment and familiarize with RStudio UI
+
+- `Talks` in R
+```{r echo=TRUE,eval=FALSE}
+# 1. Basic command  
+# 2. Read & write data
+# 3. Extract-Transform-Load
+# 4. Exploratory data analysis 
+# 5. Data visualization
+```
+- Challenges!
+
+--- .segue .dark
+
+## 工欲善其事，必先利其器
+
+--- &vcenter .largecontent
+
+## Install R and RStudio
+
+### Live Demo!
+
+--- &vcenter .largecontent
+
+## RStudio Interface
+
+- 程式碼編輯區
+- 命令列區 (Console)
+- 其他資訊區
+- 檔案系統區
+
+--- &vcenter .largecontent
+
+## Familiarize with R and RStudio I
+
+### 命令列區
+
+- 最左下角的符號是`>`
+- 輸入`"hello world"`後按下Enter，檢查螢幕輸出（記得加上引號）
+- 輸入`1 + 1`後按下Enter，檢查螢幕輸出，注意有無引號
+- 輸入`1 + `後按下Enter，檢查螢幕輸出，注意最左下角的開頭變成`+`
+- 按下Ctrl + C或ESC，檢查哪一個按鈕會讓左下角回復成`>`開頭
+
+--- &vcenter .largecontent
+
+## Familiarize with R and RStudio II
+
+### 命令列區
+
+- 在新的一行命令列區輸入`he`之後按下Enter
+- 在新的一行命令列區輸入`he`之後按下tab
+- 最後輸入 Ctrl + L
+
+--- &vcenter .largecontent
+
+## Familiarize with R and RStudio III
+
+### 程式碼編輯區
+
+- 建立新的R Script檔案 (.r)
+- 在第一行輸入`he`之後按下Ctrl + Enter後，觀察命令列區
+- 利用滑鼠點選`he`後的位置，確認游標閃爍的位置在`he`之後，按下tab
+
+--- &twocol
+
+## 常用快捷鍵
+
+*** =left
+### 命令列區：
+- Enter: 執行
+- Tab: 提示
+- Ctrl + C: 中斷程式
+- Ctrl + L: 清空命令列
+
+*** =right
+### 程式碼編輯區：
+- Ctrl + Enter (Command + Enter): 執行該行程式碼
+(也可以用右上角的 `Run`)
+
+--- .segue .dark
+
+## R 的擴充功能 (View)
+
+--- 
+
+## [CRAN Task Views](http://cran.r-project.org/web/views/)
+
+`r fig("CRAN-Task-Views.png", 100)`
+
+--- .largecontent
+
+## Install package
+
+### UI
+
+- Tools -> Install packages... 
+
+### Console
+
+```{r, eval = FALSE, echo = TRUE}
+install.views("topic-name")
+install.packages("pkg-name", repos = "來源", type = "類別")
+```
+
+--- &vcenter .largecontent
+
+## Challenge!
+
+### Install package
+
+- Install with UI- (package "dplyr")
+- install.package
+
+--- 
+## Basic R command
+
+```{r echo=TRUE,eval=FALSE}
+getwd() # where we are now
+```
+```{r echo=TRUE,eval=FALSE}
+setwd("path") # set working directory (keep your work together!)
+```
+
+--- .dark .segue
+
+## Talk in R
+
+--- &twocol .largecontent
+
+## Expression
+
+*** =left
+
+```{r, echo = TRUE}
+"1;2;3;"
+1;2;3;
+1;2;#3;
+``` 
+
+*** =right
+
+- 以`;`或`空行`(輸入Enter) 結尾
+- 單引號`'`或雙引號`"`所包覆的敘述表字串
+- 不完整的敘述句，命令列的開頭會變成`+`
+- 可以用`Ctrl + C`或`ESC` 中斷
+- `#`表示註解，計算時會忽略
+
+--- &twocol .largecontent
+
+## Expression and arithematic
+
+*** =left
+
+```{r, echo=TRUE}
+1 + 1
+1 + 2 - 1
+(1 + 1) * 2
+2.5e3
+```
+
+*** =right
+
+- 敘述句可以運算出一個R 物件 (object)
+- 四則運算以括號內最優先，先乘除後加減
+- 中間有`e`的數值，代表10的冪次方（科學記號）
+
+--- &twocol .largecontent
+
+## Assign value `<-` or `=`
+
+*** =left
+
+```{r, echo = TRUE}
+One
+One <- 1
+One
+Two = "2"
+Two
+```
+
+*** =right
+
+### Assign value
+
+<center>
+`r fig("assign-missing.png", 50)`
+</center>
+
+$$\Downarrow$$
+
+<center>
+`r fig("assign-linking.png", 50)`
+</center>
+
+--- &twocol .largecontent
+
+## 向量 (vector)
+
+*** =left
+
+```{r, echo=TRUE}
+c(1, 2, 3) + 1
+1:3
+1:3 * 2
+```
+
+*** =right
+
+- 利用`c`建立向量
+- 利用`:`建立序列
+- 運算是向量式的
+
+<center>`r fig("vectorize-plus-before.png", 50)`</center>
+$$\Downarrow$$
+<center>`r fig("vectorize-plus-after.png", 50)`</center>
+
+--- .segue .dark
+
+## Data structure of R
+
+--- &vcenter .largecontent
+
+## Basic data type
+
+- Numerical value (1, 0.35, 41.2)
+- String ("大安區","A")
+- Logic (TRUE,FALSE)
+    - 基本邏輯運算符號 (>, >=, <, <=, ==, not !=, and &, or |)
+
+---
+
+```{r echo=TRUE,eval=TRUE}
+a <- 10; b <- "ten"; c <- "25"; d <- TRUE; e <- FALSE 
+a > 1 # TRUE
+a + b # error
+a + c # error
+d & e # FALSE
+```
+
+--- &vcenter .largecontent
+
+## Quantitative
+
+- Price, height, weight, score, time...
+- Numerical data in R
+    - Integer `1L`
+    - real`1.5`
+
+```{r, echo = TRUE}
+99L;99.5
+```
+
+--- &vcenter .largecontent
+
+## Qualitative
+
+- Area, class, usage...
+- Categorical data in R
+    - String
+    - Factor
+
+```{r categorical_variable, echo = TRUE}
+c("011", "012");factor(c("三年甲班", "三年乙班", "三年甲班"))
+```
+
+--- &vcenter .largecontent
+
+## 查詢變數的類別
+
+```{r, echo = TRUE}
+x <- 1:3
+class(x);mode(x)
+x <- c("1", "2", "3")
+class(x);mode(x)
+```
+
+--- .segue .dark
+
+## Read data
+
+--- .largecontent
+
+## read.table() with real data
+- As a `data.frame`
+```{r read.table, echo = TRUE,eval=TRUE}
+#taipei_rent <- read.table('TaipeiRealPriceRent_big5.csv',header=TRUE,sep=",") # for Windows
+taipei_rent <- read.table('TaipeiRealPriceRent_utf8.csv', header = TRUE, sep = ",");
+```
+```{r echo = TRUE, eval=TRUE}
+names(taipei_rent)
+```
+
+--- &vcenter .largecontent
+
+## Quiz
+- 請問以下資料，每一個欄位是屬於哪些類別的資料？
+```{r read.table_Again, echo = FALSE,eval=TRUE}
+#taipei_rent <- read.table('TaipeiRealPriceRent_big5.csv',header=TRUE,sep=",") # for Windows
+taipei_rent <- read.table('TaipeiRealPriceRent_utf8.csv', header = TRUE, sep = ",");
+```
+```{r echo=FALSE,eval=TRUE}
+sample(taipei_rent[1:5,1:10])
+```
+
+---
+## Basic description
+
+```{r echo=TRUE,eval=TRUE}
+summary(taipei_rent)
+```
+
+--- .largecontent
+
+## Data selection
+
+- Select a column
+```{r select_column, echo = TRUE, eval=FALSE}
+head(taipei_rent$交易標的) 
+```
+```{r echo=FALSE, eval=TRUE}
+head(taipei_rent$交易標的,n=5)
+```
+
+--- .largecontent
+## Example
+### 選取住家用建物的資料
+
+```{r select_row_example, echo = TRUE, eval = FALSE}
+x1 <- taipei_rent$主要用途
+x2 <- x1 == "住家用"
+x3 <- taipei_rent[x2,]
+head(x3)
+```
+
+---
+## Labeling categorical variable
+
+```{r labeling, echo=TRUE, eval = FALSE}
+oldtype <- unique(taipei_rent$建物型態)
+type <- factor(taipei_rent$建物型態, levels=oldtype, labels=c("住宅","商辦","華廈","公寓","店面","套房","廠辦","其他","透天厝","倉庫","工廠"))
+
+taipei_rent$建物型態 <- type
+```
+```{r labeling result, echo=FALSE, eval = TRUE}
+oldtype <- unique(taipei_rent$建物型態)
+type <- factor(taipei_rent$建物型態, levels=oldtype, labels=c("住宅","商辦","華廈","公寓","店面","套房","廠辦","其他","透天厝","倉庫","工廠"))
+
+taipei_rent$建物型態 <- type
+```
+```{r output, echo=FALSE, eval=TRUE}
+oldtype
+unique(taipei_rent$建物型態)
+```
+
+--- 
+## Data manipulation with package "dplyr"
+
+- filter 設定過濾條件
+```{r, echo=TRUE}
+#taipei_rent <- read.table('TaipeiRealPriceRent_bi5.csv',header=TRUE,sep=",") # for Windows
+taipei_rent <- read.table('TaipeiRealPriceRent_utf8.csv',header=TRUE,sep=",")
+
+library(dplyr)
+wenshan <- filter(taipei_rent, 鄉鎮市區 == "文山區" & 主要用途 == "住家用"); #選文山區住家用建物資料
+head(wenshan)
+
+```
+
+---
+## Data manipulation with package "dplyr"
+
+- select 選擇需要欄位
+
+```{r,echo=TRUE,eval=TRUE}
+
+tab1 <- select(wenshan,交易標的,建物型態,建物移轉總面積.平方公尺.,總價.元.,contains("建物現況格局"));
+names(tab1)
+```
+
+---
+
+## Export data
+
+```{r,echo=TRUE}
+?write.csv
+write.csv(tab1,file="tab1.csv")
+```
+
+---
+
+## Formula & Pivot table
+- y ~ x
+```{r echo=TRUE,eval=TRUE}
+library(dplyr)
+summarise(group_by(tab1,建物型態),平均=mean(總價.元.))
+```
+
+---
+## Summary
+
+- Basic R command: getwd(), setwd(), help(), example()
+- Data type: mode(), class(), factor()
+- Data I/O: read.table(), write.table()
+- dplyr: filter(), select(), summarise(), group_by()
+- [dplyr cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/01/data-wrangling-cheatsheet.pdf)
+
+--- .segue .dark
+
+## Your Turn!
+
+--- 
+
+### Data manipulation and export
+
+- 找出大安區所有的住家用建物資料 (Hint: filter() )
+- 將建物型態簡化
+- 依照建物型態製作平均總價的pivot table (Hint: summarise(), group_by())
+- 將大安區所有的住家用建物資料輸出成csv檔案 (write.csv())
+
+--- .segue .dark
+
+## Exploratory data analysis 
+
+--- .largecontent
+
+## Quantitative data
+
+- Descriptive statistics：`mean`、`sd`、`median`、`quantile`
+- Distribution：`density`
+
+--- .largecontent
+
+## Qualitative data
+
+- Tabulating：`table`
+
+--- &vcenter 
+
+## 利用說明文件了解函數內容
+
+### 範例：學習`mean`的用法
+
+- 閱讀說明文件
+    ```{r mean.help, eval = FALSE, echo=TRUE}
+    ?mean
+    ```
+- 嘗試範例
+    ```{r mean.example, eval = FALSE, echo = TRUE} 
+    example(mean)
+    ```
+- 自動完成
+    - 在命令列輸入`mean(`後按下`tab`
+
+--- &vcenter .largecontent
+
+## 探索單一量化變數
+
+### 挑戰：學習`sd`的用法
+
+--- &vcenter .largecontent 
+
+## 探索單一量化變數
+
+### 挑戰：選取<b>大安區</b>的單價.元.平方公尺
+
+<br/>
+
+### 範例：使用`mean`求<b>大安區</b>的平均單價
+
+<br/>
+
+### 挑戰：使用`sd`求<b>大安區</b>單價的標準差
+
+*** =pnotes
+
+1. 選取<b>大安區</b>的單價欄位 (hint: filter())
+2. 在`mean`中利用1.的結果
+3. 在`sd`中利用1.的結果
+
+--- &vcenter .largecontent
+
+## 探索一個質化變數
+
+1. 選取資料中的"交易標的"，存成`target`變數
+2. 學習`table`的用法
+    - `?table`
+    - `example(table)`
+3. 利用`table`觀察標籤的個數
+
+```
+
+--- &vcenter .largecontent
+
+## 探索變數間的關係
+
+- `ftable`：質化 v.s. 質化
+- bar chart：質化 v.s. 量化
+- scatter plot： 量化 v.s. 量化
+
+--- &vcenter .largecontent
+
+## 探索質化變數與質化變數的關係
+
+```{r ftable.example, echo = TRUE, eval = FALSE}
+?ftable
+example(ftable)
+```
+
+```
+ftable> ## Start with a contingency table.
+ftable> ftable(Titanic, row.vars = 1:3)
+                   Survived  No Yes
+Class Sex    Age                   
+1st   Male   Child            0   5
+             Adult          118  57
+      Female Child            0   1
+             Adult            4 140
+```
+
+--- &vcenter .largecontent
+
+## 描述資料間的關係：`formula`物件
+
+### 變數之間的因果關係
+
+`r fig("500px-Ishikawa_Fishbone_Diagram.svg.png", 100)`
+
+出處：<http://en.wikipedia.org/wiki/Causality>
+
+--- &vcenter .largecontent
+
+## 描述資料間的關係：`formula`物件
+
+`Column Name 1 ~ Column Name 2 + ...`
+
+- 給定一個表格
+    - `Column Name 1`是代表結果資料的欄位名稱
+    - `Column Name 2`是代表原因資料的欄位名稱
+    - `...`表示原因不止一個欄位
+- formula中的欄位名稱不用加上雙引號
+
+```{r ftable.formula, eval = FALSE, echo = TRUE}
+ftable(Survived ~ Sex, Titanic)
+ftable(Survived ~ Sex + Class, Titanic)
+```
+
+--- &vcenter .largecontent
+
+## 小挑戰
+
+- 請利用`ftable`來觀察:
+    - 艙別(`Class`)會不會影響死亡率(`Survived`)
+    - 艙別(`Class`)和年齡(`Age`)會不會影響死亡率(`Survived`)
+
+*** =pnotes
+
+```r
+ftable(Survived ~ Class, Titanic)
+ftable(Survived ~ Class + Age, Titanic)
+```
+
+--- .dark .segue
+
+## R 的基礎繪圖
+
+--- .largecontent
+
+## Barplot
+
+```{r barplot, echo=TRUE,eval=FALSE, fig.height = 5}
+par(family="STHeiti", cex.lab=TRUE)# for OS X
+barplot(sort(table(tab1$建物型態), decreasing=TRUE),las=1,horiz=TRUE)
+```
+<center>`r fig("barplot.png",100)`</center>
+
+--- .largecontent
+
+## Pie chart
+
+```{r pieplot, echo=TRUE, eval=FALSE,fig.height = 5}
+par(family="BiauKei") # for OS X
+pie(sort(table(tab1$交易標的), decreasing=TRUE))
+```
+<center>`r fig("piechart.png",100)`</center>
+
+--- .largecontent
+
+## Scatter plot
+```{r scatterplot, echo=TRUE,eval=FALSE}
+par(family="STHeiti") #For OSX
+plot(tab1$建物移轉總面積.平方公尺.,tab1$總價.元.)
+```
+
+<center>`r fig("scatterplot.png",100)`</center>
+
+--- &vcenter .largecontent
+
+## Graphic annotation
+
+- Range：`xlim`, `ylim`
+- Title and axis label：`main`, `xlab`, `ylab`
+- Color, pattern：`color`, `pch`
+- `axis`
+- `legends`
+- 數學符號：`help("plotmath")`
+
+--- &vcenter .largecontent
+
+## Learn about the parameter - 以pch為例
+
+```{r pch.example, echo = TRUE, eval = FALSE}
+help("pch")
+example(pch)
+```
+
+--- .dark .segue
+
+## Graphics output
+
+--- &vcenter .largecontent
+
+## Save as plot
+
+- RStudio UI
+- `savePlot`
+- `bmp`、`png`、`jpeg` or `tiff`
+
+--- .dark .segue
+
+## Summary
+
+--- .largecontent
+
+- Basic R command: getwd(), setwd(), help(), example()
+- Data type: mode(), class(), factor(), names()
+- dplyr: filter(), select(), summarise()
+- Visualization: plot(), barplot(), piechart()
+
+--- .segue .dark
+
+## Q&A
+
+--- .segue .dark
+
+## YOUR TURN
+
+--- 
+
+## YouBike Data
+
+<center>`r fig("youbike.png",75)`</center>
+
+---
+
+```{r echo=FALSE,eval=TRUE}
+ubike <- read.table("ubike-utf8.csv",header=TRUE,sep=",")
+names(ubike)
+head(ubike,10)
+```
+
+---
+
+## Task
+1. 找出總停車格數量前10名的場站
+2. 算出每一區有多少youbike站點（Hint: summarise(), length(), unique()）
+3. 選出單一區域，畫出每小時平均車輛數的長期平均
+
+***=pnotes
+tab2 <- summarise(group_by(ubike,場站區域),站數=length(unique(場站名稱)))
+
+--- .largecontent
+
+## Next
+
+- Data analysis with R
+
+
+
