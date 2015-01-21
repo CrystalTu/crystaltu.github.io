@@ -142,7 +142,7 @@ species &lt;- factor(iris$Species, levels = c(&quot;setosa&quot;,&quot;versicolo
 sample(species, size=10)
 </code></pre>
 
-<pre><code>##  [1] ver vir ver ver set set ver set set vir
+<pre><code>##  [1] set set ver vir ver vir set ver ver vir
 ## Levels: set ver vir
 </code></pre>
 
@@ -342,7 +342,7 @@ virginica &lt;- filter(iris, Species == &quot;virginica&quot;)  #只選 I. virgi
     <h2>Example</h2>
   </hgroup>
   <article data-timings="">
-    <pre><code class="r">#taipei_rent &lt;- read.table(&#39;TaipeiRealPriceRent_bi5.csv&#39;,header=TRUE,sep=&quot;,&quot;) # for Windows
+    <pre><code class="r">#taipei_rent &lt;- read.table(&#39;TaipeiRealPriceRent_big5.csv&#39;,header=TRUE,sep=&quot;,&quot;) # for Windows
 taipei_rent &lt;- read.table(&#39;TaipeiRealPriceRent_utf8.csv&#39;,header=TRUE,sep=&quot;,&quot;)
 oldtype &lt;- unique(taipei_rent$建物型態)
 type &lt;- factor(taipei_rent$建物型態, levels=oldtype, labels=c(&quot;住宅&quot;,&quot;商辦&quot;,&quot;華廈&quot;,&quot;公寓&quot;,&quot;店面&quot;,&quot;套房&quot;,&quot;廠辦&quot;,&quot;其他&quot;,&quot;透天厝&quot;,&quot;倉庫&quot;,&quot;工廠&quot;))
@@ -366,7 +366,7 @@ names(tab2) &lt;- c(&quot;target&quot;,&quot;type&quot;,&quot;area&quot;,&quot;p
 <article class = 'flexbox vcenter'>
 <pre><code class="r"># simple linear regression with price~area
 model1 &lt;- lm(price~area,data=tab1)
-plot(tab1$price~tab1$area,xlab=&quot;Price&quot;,ylab=&quot;Area&quot;);abline(model1, col=&quot;red&quot;)
+plot(tab1$price~tab1$area,xlab=&quot;Area&quot;,ylab=&quot;Price&quot;);abline(model1, col=&quot;red&quot;)
 </code></pre>
 
 <p><img src="assets/fig/unnamed-chunk-16-1.png" alt="plot of chunk unnamed-chunk-16"> </p>

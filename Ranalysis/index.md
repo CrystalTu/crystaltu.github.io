@@ -84,7 +84,7 @@ sample(species, size=10)
 ```
 
 ```
-##  [1] ver vir ver ver set set ver set set vir
+##  [1] set set ver vir ver vir set ver ver vir
 ## Levels: set ver vir
 ```
 
@@ -235,7 +235,7 @@ $$R^2 = 1 - \frac{SS_{residual}}{SS_{total}} $$
 
 
 ```r
-#taipei_rent <- read.table('TaipeiRealPriceRent_bi5.csv',header=TRUE,sep=",") # for Windows
+#taipei_rent <- read.table('TaipeiRealPriceRent_big5.csv',header=TRUE,sep=",") # for Windows
 taipei_rent <- read.table('TaipeiRealPriceRent_utf8.csv',header=TRUE,sep=",")
 oldtype <- unique(taipei_rent$建物型態)
 type <- factor(taipei_rent$建物型態, levels=oldtype, labels=c("住宅","商辦","華廈","公寓","店面","套房","廠辦","其他","透天厝","倉庫","工廠"))
@@ -257,7 +257,7 @@ names(tab2) <- c("target","type","area","price","furniture","management","room",
 ```r
 # simple linear regression with price~area
 model1 <- lm(price~area,data=tab1)
-plot(tab1$price~tab1$area,xlab="Price",ylab="Area");abline(model1, col="red")
+plot(tab1$price~tab1$area,xlab="Area",ylab="Price");abline(model1, col="red")
 ```
 
 ![plot of chunk unnamed-chunk-16](assets/fig/unnamed-chunk-16-1.png) 
