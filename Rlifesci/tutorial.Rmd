@@ -173,5 +173,5 @@ if (sum(newMat)>50) r=1 else r=0
 ```
 
 ```{r,eval=TRUE,echo=TRUE}
-newMat
+r
 ```
