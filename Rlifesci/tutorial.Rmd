@@ -1,0 +1,177 @@
+---
+title: "R tutorial for Life Science Mathematics"
+author: "Chen-Yi Tu"
+date: "September 29, 2015"
+output: html_document
+---
+
+# Basic operation
+```{r, echo=TRUE}
+#Getting help
+?read.csv
+#or
+help(read.csv)
+```
+
+Check example on a help topic
+```{r}
+example(mean)
+```
+
+Set working directory
+```{r, eval=FALSE,echo=TRUE}
+setwd("OneDrive/in_progress/course/LifeScienceMathematics/Rclass/")
+library("deSolve")
+```
+
+# Part 1: File I/O
+```{r, echo=TRUE}
+# read data as data frame
+pollock = read.csv('pollockGOA.csv',header=TRUE)
+mode(pollock)
+head(pollock)
+```
+
+Call the element in the data frame by column name
+```{r}
+pollock$Year
+```
+
+Assign the element in the data frame to different variable
+```{r, eval=TRUE,echo=TRUE}
+age1 = pollock$X1
+year = pollock$Year
+```
+```{r, eval=TRUE,echo=TRUE}
+age1
+```
+
+Convert the data frame into matrix
+```{r,eval=TRUE,echo=TRUE}
+pollock_mat = data.matrix(pollock)
+mode(pollock_mat)
+```
+
+Check the matrix by the index
+```{r,eval=TRUE,echo=TRUE}
+year = pollock_mat[,1]
+data = pollock_mat[,c(2:16)]
+```
+
+```{r,eval=TRUE,echo=TRUE}
+year
+```
+
+```{r,eval=TRUE,echo=TRUE}
+data
+```
+
+Convert matrix to data frame
+```{r,eval=TRUE,echo=TRUE}
+output = as.data.frame(data)
+```
+
+Save the data frame as another file
+```{r,eval=TRUE,echo=TRUE}
+write.table(output,file="pollock_matrix.csv",row.names=FALSE,col.name=FALSE)
+```
+
+
+# Part II: Graphic
+```{r,eval=TRUE,echo=TRUE}
+plot(data[,1],data[,6],xlab="Age1",ylab="Age6")
+```
+
+```{r,eval=TRUE,echo=TRUE}
+barplot(data[,1],xlab="Age",ylab="million ind.") # barplot
+```
+
+```{r,eval=TRUE,echo=TRUE}
+plot(year,data[,6],type="l",ylab="million ind.") # line plot
+```
+
+# Part III: data creation, type and structure
+```{r,eval=TRUE,echo=TRUE}
+# create a vector
+a <- c(1,2,5.3,6,-2,4) # numeric vector
+b <- c("one","two","three") # character vector
+c <- c(TRUE,TRUE,TRUE,FALSE,TRUE,FALSE) # logical vector
+```
+
+```{r,eval=TRUE,echo=TRUE}
+a
+```
+
+Create a sequence with setted interval
+```{r,eval=TRUE,echo=TRUE}
+times <- seq(0, 100, by=0.01) #create a sequence of data with interval=0.1
+```
+
+Create a matrix
+```{r,eval=TRUE,echo=TRUE}
+mat = matrix(c(1:9),3,3)
+```
+
+# Part IV: matrix and basic mathematics
+Matrix operation
+```{r,eval=TRUE,echo=TRUE}
+matT = t(mat) # transpose
+matDiag = diag(mat) # diagnoal
+mat2 = mat %*% mat # multiplication
+lambda = eigen(mat) # eigen value analysis
+```
+
+Basic mathematics and statistics 
+```{r,eval=TRUE,echo=TRUE}
+total = sum(mat)
+subtotal =  colSums(mat)
+log(mat)
+exp(mat)
+sin(pi/2)
+```
+
+Example: use deSolve to solve ODE
+```{r,eval=FALSE,echo=TRUE}
+t = times
+state = c(X=1,Y=1,Z=1)
+parameters = c(a=?,b=?,c=?)
+```
+
+# Part V: function
+```{r,eval=FALSE,echo=TRUE}
+Lorenz<-function(t, state, parameters) {
+   with(as.list(c(state, parameters)),{
+    # rate of change
+    dX <- a*X + Y*Z
+    dY <- b * (Y-Z)
+    dZ <- -X*Y + c*Y - Z
+    # return the rate of change
+    list(c(dX, dY, dZ))
+    }) 
+}
+```
+
+# Part VI: Programming control structure
+For loop
+```{r,eval=TRUE,echo=TRUE}
+newMat = matrix(0,3,3)
+
+for (i in 1:nrow(mat))
+  for (j in 1:ncol(mat)){
+
+    newMat[i,j] = mat[i,j]+2
+}
+```
+
+```{r,eval=TRUE,echo=TRUE}
+newMat
+```
+
+If loop
+```{r,eval=TRUE,echo=TRUE}
+if (sum(newMat)>50) r=1 else r=0
+```
+
+```{r,eval=TRUE,echo=TRUE}
+newMat
+```
